@@ -1,0 +1,2 @@
+Đây là file weak1.txt
+Thuộc branch: master và test meger
