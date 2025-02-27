@@ -1,2 +1,6 @@
 Đây là file weak1.txt
+<<<<<<< HEAD
 Thuộc branch: master và test meger
+=======
+Thuộc branch: test_confict
+>>>>>>> test_conflict
