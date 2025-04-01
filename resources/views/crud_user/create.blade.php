@@ -21,22 +21,20 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <input type="text" placeholder="Phone" id="name" class="form-control" name="phone"
+                                    <input type="text" placeholder="Like" id="like" class="form-control" name="like"
                                            required autofocus>
-                                    @if ($errors->has('phone'))
-                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @if ($errors->has('like'))
+                                        <span class="text-danger">{{ $errors->first('like') }}</span>
                                     @endif
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <input type="text" placeholder="Address" id="name" class="form-control" name="address"
+                                    <input type="text" placeholder="Age" id="age" class="form-control" name="age"
                                            required autofocus>
-                                    @if ($errors->has('address'))
-                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @if ($errors->has('age'))
+                                        <span class="text-danger">{{ $errors->first('age') }}</span>
                                     @endif
                                 </div>
-
-
                                 <div class="form-group mb-3">
                                     <input type="text" placeholder="Email" id="email_address" class="form-control"
                                            name="email" required autofocus>

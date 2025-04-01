@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,9 +63,9 @@ class CrudUserController extends Controller
 
         $data = $request->all();
         $check = User::create([
-            'name' => $data['name'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
+            'name' => $data['name'],   
+            'like' => $data['like'],  
+            'age' => $data['age'],        
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
