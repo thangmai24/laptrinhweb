@@ -1,27 +1,23 @@
 @extends('dashboard')
 
 @section('content')
-    <main class="login-form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Like</th>
-                            <th>Age</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $user)
+<div class="user-list-container">
+        <h2>Danh sách user</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($users as $user)
                             <tr>
                                 <th>{{ $user->id }}</th>
                                 <th>{{ $user->name }}</th>
-                                <th>{{ $user->like }}</th>
-                                <th>{{ $user->age }}</th>
+                           
                                 <th>{{ $user->email }}</th>
                                 <th>
                                     <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
@@ -30,9 +26,15 @@
                                 </th>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-            </div>
+               
+            </tbody>
+        </table>
+        <div class="pagination">
+            <a href="#">Previous</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">Next</a>
         </div>
-    </main>
+    </div>
 @endsection

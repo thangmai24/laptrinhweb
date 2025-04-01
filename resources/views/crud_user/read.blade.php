@@ -1,26 +1,18 @@
 @extends('dashboard')
 
 @section('content')
-    <main class="login-form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{$messi->id}}</td>
-                            <td>{{$messi->name}}</td>
-                            <td>{{$messi->email}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="detail-container">
+        <h2>Màn hình chi tiết</h2>
+        <div class="info-group">
+            <label>Username</label>
+            <p>{{$messi->name}}</p>
         </div>
-    </main>
+        <div class="info-group">
+            <label>Email</label>
+            <p>{{$messi->email}}</p>
+        </div>
+        <a href="{{ route('user.updateUser', ['id' => $messi->id]) }}" class="btn">Chỉnh sửa</a>
+    </div>
 @endsection
+
+
