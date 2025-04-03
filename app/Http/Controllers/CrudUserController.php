@@ -22,7 +22,11 @@ class CrudUserController extends Controller
         return view('crud_user.login');
     }
 
-  
+    public function update()
+    {
+        return view('crud_user.update');
+    }
+
 
     /**
      * User submit form login
@@ -67,12 +71,10 @@ class CrudUserController extends Controller
 
         $data = $request->all();
         $check = User::create([
-            'name' => $data['name'],   
-            'age' => $data['age'], 
-            'github' => $data['github'],
+            'name' => $data['name'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
-            
+
         ]);
 
         return redirect("login");
@@ -81,7 +83,8 @@ class CrudUserController extends Controller
     /**
      * View user detail page
      */
-    public function readUser(Request $request) {
+    public function readUser(Request $request)
+    {
         $user_id = $request->get('id');
         $user = User::find($user_id);
 
@@ -91,7 +94,8 @@ class CrudUserController extends Controller
     /**
      * Delete user by id
      */
-    public function deleteUser(Request $request) {
+    public function deleteUser(Request $request)
+    {
         $user_id = $request->get('id');
         $user = User::destroy($user_id);
 
@@ -101,47 +105,48 @@ class CrudUserController extends Controller
     /**
      * Form update user page
      */
-    public function updateUser(Request $request)
+    public function updateUser($id)
     {
-        $user_id = $request->get('id');
-        $user = User::find($user_id);
+        $user = User::find($id);
 
-        return view('crud_user.update', ['user' => $user]);
+        if (!$user) {
+            return redirect()->route('user.list')->with('error', 'User not found');
+        }
+
+        return view('crud_user.update', compact('user'));
     }
+
 
     /**
      * Submit form update user
      */
     public function postUpdateUser(Request $request)
     {
-        $input = $request->all();
-
-        $request->validate([
+        $validatedData = $request->validate([
+            'id' => 'required|exists:users,id',  // Ensure 'id' exists
             'name' => 'required',
-            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|min:6',
         ]);
 
-       $user = User::find($input['id']);
-       $user->name = $input['name'];
-       $user->email = $input['email'];
-       $user->password = $input['password'];
-       $user->save();
+        $user = User::findOrFail($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password); // Hash password
+        $user->save();
 
-        return redirect("list")->withSuccess('You have signed-in');
+        return redirect()->route('user.list')->with('success', 'User updated successfully');
     }
+
 
     /**
      * List of users
      */
     public function listUser()
     {
-//        $users = [
-//                'users' => User::all()
-//        ];
-//        return view('crud_user.ronaldo', $users);
 
-        if(Auth::check()){
+
+        if (Auth::check()) {
             $users = User::all();
             return view('crud_user.list', ['users' => $users]);
         }
@@ -152,7 +157,8 @@ class CrudUserController extends Controller
     /**
      * Sign out
      */
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 
