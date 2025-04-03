@@ -8,6 +8,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
+                    <th>Age</th>
                     <th>Email</th>
                     <th>Thao tác</th>
                 </tr>
@@ -17,7 +18,7 @@
                             <tr>
                                 <th>{{ $user->id }}</th>
                                 <th>{{ $user->name }}</th>
-                           
+                                <th>{{ $user->age }}</th>
                                 <th>{{ $user->email }}</th>
                                 <th>
                                     <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |

@@ -13,6 +13,15 @@
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
             </div>
+
+            <div class="input-group">
+                <label for="age">Age</label>
+                <input type="text" id="age" name="age" required>
+                @if ($errors->has('age'))
+                                        <span class="text-danger">{{ $errors->first('age') }}</span>
+                                    @endif
+            </div>
+
             <div class="input-group">
                 <label for="password">Mật khẩu</label>
                 <input type="password" id="password" name="password" required>
