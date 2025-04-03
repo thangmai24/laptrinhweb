@@ -69,6 +69,7 @@ class CrudUserController extends Controller
         $check = User::create([
             'name' => $data['name'],   
             'age' => $data['age'], 
+            'github' => $data['github'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             

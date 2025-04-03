@@ -23,6 +23,14 @@
             </div>
 
             <div class="input-group">
+                <label for="github">Github</label>
+                <input type="text" id="github" name="github" required>
+                @if ($errors->has('github'))
+                                        <span class="text-danger">{{ $errors->first('github') }}</span>
+                                    @endif
+            </div>
+
+            <div class="input-group">
                 <label for="password">Mật khẩu</label>
                 <input type="password" id="password" name="password" required>
                 @if ($errors->has('password'))
